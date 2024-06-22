@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+   <link rel="stylesheet" href="style.css" />
+    <title>Operaciones</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="caja-input">
+        <input type="text" placeholder="primer numero" id="numero1" />
+        <div class="operador">
+            <p id="op">?</p>
+        </div>
+        <input type="text" placeholder="segundo numero" id="numero2" />
+      </div>
+      <div class="caja-button">
+        <button id="suma" onmouseover="mostrarOp('+')">Sumar</button>
+        <button id="resta" onmouseover="mostrarOp('-')">Restar</button>
+        <button id="multi" onmouseover="mostrarOp('x')">Multiplicar</button>
+        <button id="div" onmouseover="mostrarOp('/')">Dividir</button>
+        <button id="pow" onmouseover="mostrarOp('^')">Potencia</button>
+      </div>
+      <div class="response">
+        <p id="resultado">Resultado:</p>
+      </div>
+    </div>
+    <script src="app.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
