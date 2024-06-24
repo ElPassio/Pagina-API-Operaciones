@@ -36,6 +36,9 @@ document.getElementById("pow").addEventListener("click", () => {
 });
 
 function consumirAPI(url) {
+  // Mostrar mensaje de espera
+  document.getElementById("resultado").innerText = "Calculando...";
+
   // Realizar la solicitud GET a la API utilizando fetch
   fetch(url)
     .then((response) => {
@@ -44,18 +47,16 @@ function consumirAPI(url) {
         throw new Error("Ocurrió un error al obtener los datos");
       }
       // Convertir la respuesta a formato JSON
-      console.log("respuesta json");
       return response.json();
     })
     .then((data) => {
       // trabajar con los datos obtenidos de la API
-      console.log("Datos recibidos:", data);
       document.getElementById("resultado").innerText = "Resultado: " + data.resultado;
-      // Puedes retornar los datos o realizar otras operaciones aquí
     })
     .catch((error) => {
       // Capturar errores de red o de la API
       console.error("Error en la solicitud:", error);
+      document.getElementById("resultado").innerText = "Resultado: Error al obtener los datos.";
     });
 }
 
@@ -77,12 +78,12 @@ function limpiarOp() {
 }
 
 function cambiarOperador() {
-const botones = document.querySelectorAll('.caja-button button');
+  const botones = document.querySelectorAll('.caja-button button');
 
-// Iterar sobre cada botón y agregar un event listener para el evento 'mouseover'
-botones.forEach(boton => {
+  // Iterar sobre cada botón y agregar un event listener para el evento 'mouseover'
+  botones.forEach(boton => {
     boton.addEventListener('mouseout', limpiarOp);
-});
+  });
 }
 
 document.getElementById("suma").addEventListener('mouseover', () => {
