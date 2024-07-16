@@ -42,21 +42,23 @@ function consumirAPI(url) {
   // Realizar la solicitud GET a la API utilizando fetch
   fetch(url)
     .then((response) => {
-      // Verificar si la respuesta es exitosa (código de estado HTTP 200-299)
-      if (!response.ok) {
-        throw new Error("Ocurrió un error al obtener los datos");
-      }
       // Convertir la respuesta a formato JSON
-      return response.json();
+      return response.json().then(data => {
+        if (!response.ok) {
+          // Si la respuesta no es exitosa, lanzar un error con el mensaje de error específico
+          throw new Error(data.error || 'Ocurrió un error al obtener los datos');
+        }
+        return data;
+      });
     })
     .then((data) => {
-      // trabajar con los datos obtenidos de la API
+      // Trabajar con los datos obtenidos de la API
       document.getElementById("resultado").innerText = "Resultado: " + data.resultado;
     })
     .catch((error) => {
-      // Capturar errores de red o de la API
+      // Capturar errores de red o de la API y mostrar el mensaje de error específico
       console.error("Error en la solicitud:", error);
-      document.getElementById("resultado").innerText = "Resultado: Error al obtener los datos.";
+      document.getElementById("resultado").innerText = error.message;
     });
 }
 
